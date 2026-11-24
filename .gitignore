@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.env
+# Notebooks
+.ipynb_checkpoints/
+# Data and outputs (audio stems, impulse responses, separated sources)
+data/
+outputs/
+*.wav
+*.mat
+*.mp4
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
