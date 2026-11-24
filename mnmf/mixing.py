@@ -5,7 +5,7 @@ microphone i; the mixture is the sum of the resulting spatial images.
 
 Usage:
     from mnmf.mixing import load_air_rir, spatial_images
-    h = load_air_rir("data/AIR_1_4/air_binaural_aula_carolina_0_1_3_0_3.mat", sr=44100)
+    h = load_air_rir("data/AIR_1_4/air_binaural_aula_carolina_1_1_3_45_3.mat", sr=44100)
     images = spatial_images([vocals, guitar], [[h11, h21], [h12, h22]])  # (J, I, N)
     mixture = images.sum(axis=0)                                         # (I, N)
 """
