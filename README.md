@@ -46,9 +46,9 @@ separate.py  command-line entry point
 
 ## References
 
-1. A. Ozerov and C. Févotte, "Multichannel nonnegative matrix factorization in convolutive mixtures for audio source separation," *IEEE Trans. Audio, Speech, Lang. Process.*, vol. 18, no. 3, pp. 550-563, 2010.
-2. M. Jeub, M. Schäfer and P. Vary, "A binaural room impulse response database for the evaluation of dereverberation algorithms," *Proc. DSP*, 2009.
-3. Z. Rafii, A. Liutkus, F.-R. Stöter, S. I. Mimilakis and R. Bittner, "The MUSDB18 corpus for music separation," 2017.
+1. A. Ozerov and C. Févotte. [Multichannel nonnegative matrix factorization in convolutive mixtures for audio source separation](https://doi.org/10.1109/TASL.2009.2031510). IEEE Trans. Audio, Speech, Lang. Process., 2010.
+2. M. Jeub, M. Schäfer and P. Vary. [A binaural room impulse response database for the evaluation of dereverberation algorithms](https://doi.org/10.1109/ICDSP.2009.5201259). Proc. DSP, 2009.
+3. Z. Rafii et al. [The MUSDB18 corpus for music separation](https://doi.org/10.5281/zenodo.1117372). Zenodo, 2017.
 
 ## Author
 
