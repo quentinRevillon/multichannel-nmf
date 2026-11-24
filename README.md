@@ -4,7 +4,7 @@
 nonnegative matrix factorisation in convolutive mixtures: it takes a reverberant multichannel recording
 and returns the spatial image of each source.
 
-<img height="160" src="figures/spectrograms.png" />
+<img width="100%" src="figures/spectrograms.png" />
 
 ## Overview
 
@@ -32,8 +32,10 @@ the estimate of each source.
 | Vocals | 2.37 | 3.34 |
 | Accompaniment | -2.37 | -0.52 |
 
-The gain is small: the Aula Carolina hall is far more reverberant than the 46 ms STFT window, which breaks
-the narrowband approximation `x(f, t) = A(f) s(f, t)`, and EM starts from a random point.
+The gain is small (about 1 dB for vocals, 1.9 dB for accompaniment) and the estimated spectrograms stay close
+to the mixture (figure above). Likely causes, not tested here: the Aula Carolina impulse responses are much
+longer than the 46 ms STFT window, so the narrowband approximation `x(f, t) = A(f) s(f, t)` is coarse, and
+EM starts from a random point.
 
 ## Installation
 
@@ -47,7 +49,7 @@ per time-frequency bin, which is much faster single-threaded.
 
 ## Quick start
 
-Run `notebooks/02_demo.ipynb` to simulate the mixture (written to `data/mixture.wav`), fit the model and
+Prepare the data (section *Data*), then run `notebooks/02_demo.ipynb` to simulate the mixture (written to `data/mixture.wav`), fit the model and
 plot the separated spectrograms. To separate any multichannel WAV file:
 
 ```bash
@@ -80,6 +82,7 @@ images = separate(mixture.T, n_sources=2, n_components=4)     # (J, I, N)
 - `mnmf/separation.py`: multichannel Wiener filtering and the end-to-end `separate` function.
 - `mnmf/metrics.py`: energy-ratio SDR with permutation matching.
 - `separate.py`: command-line entry point.
+- `prepare_stems.py`: extraction of the two mono source excerpts from MUSDB18.
 - `notebooks/01_course_implementation.ipynb`: notebook submitted for the course (in French).
 - `notebooks/02_demo.ipynb`: simulation, EM fit and separation with the `mnmf` package.
 - `docs/reading_note_fr.pdf`: reading note on the paper submitted for the course (in French).
@@ -101,9 +104,15 @@ convergence.
 
 Nothing is committed; place the files in `data/`:
 
-- MUSDB18 ([sigsep.github.io/datasets/musdb](https://sigsep.github.io/datasets/musdb.html)): the demo uses
-  15 s mono excerpts (from 10 s) of the `vocals` and `other` stems of the first training track, saved as
-  `data/vocals_mono.wav` and `data/guitar_mono.wav` (44.1 kHz).
+- MUSDB18 ([sigsep.github.io/datasets/musdb](https://sigsep.github.io/datasets/musdb.html)), extracted to
+  `data/musdb18/`. The demo uses 15 s mono excerpts (from 10 s) of the `vocals` and `other` stems of the
+  first training track (44.1 kHz), written to `data/vocals_mono.wav` and `data/guitar_mono.wav` by:
+
+  ```bash
+  pip install musdb   # also needs ffmpeg to decode .stem.mp4
+  python prepare_stems.py --musdb data/musdb18 --out data
+  ```
+
 - Aachen Impulse Response database v1.4 ([RWTH Aachen](https://www.iks.rwth-aachen.de/en/research/tools-downloads/databases/aachen-impulse-response-database/)):
   `data/AIR_1_4/air_binaural_aula_carolina_{0,1}_1_3_{45,135}_3.mat` (right and left ear, sources at 45° and 135°).
 
